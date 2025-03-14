@@ -3,6 +3,8 @@ import json
 points = 0
 
 def show_question(question):
+
+    global points
  
 
     print(question["pytanie"])
@@ -17,9 +19,12 @@ def show_question(question):
     answer = input("która odpowiedz wybierasz: ")
    
     if answer == question["prawidlowa_odpowiedz"]:
-     print("To prawidłowa odpowiedz ")
-
-    else: "niestety nie odgadłeś"   
+     points+=1
+     print(points)
+    else: 
+        
+       points -= points
+       print(points)
 
 
 with open("python-zadania\quiz\plik.json") as json_file:
@@ -27,8 +32,10 @@ with open("python-zadania\quiz\plik.json") as json_file:
     
      for index in range(0,len(questions)):
         show_question(questions[index])
-
-
-
-
+ 
+if points<0:
+   
+   points= 0 
+ 
+print('prawidlowe odpowiedzi ' , points)
 

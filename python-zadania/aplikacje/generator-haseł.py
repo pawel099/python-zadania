@@ -75,9 +75,9 @@ random.shuffle(password)
 print("wygenerowane hasło" ,"".join(password))
       
 
-      
+ 
 
-
+ 
 
    
 
