@@ -3,86 +3,62 @@ import random
 import string
 
 password = []
-charakter_left =-1
+characters_left = -1
 
-def update_charakter_left(number_of_charakter):
-
-    global charakter_left
-
-    if number_of_charakter<0 or number_of_charakter>charakter_left:
-       print("liczba znaków z poza przedziału 0 " ,charakter_left)
-       sys.exit(0)
+def update_characters_left(number_of_characters):
+    global characters_left
     
+    if number_of_characters < 0 or number_of_characters > characters_left:
+        print("Liczba znaków spoza przedziału 0,", characters_left)
+        sys.exit(0)
     else:
-     charakter_left -= number_of_charakter
-     print("pozostało znaków",charakter_left)
+        characters_left -= number_of_characters
+        print("Pozostało znaków:", characters_left)
 
+password_length = int(input("Jak długie ma być hasło? "))
 
-password_length = int(input("jak długie ma być hasło ? "))
-
-if password_length<10:
-    print("hasło jest za krótkie , musi mieć min 5 znaków")
+if password_length < 5:
+    print("Hasło musi mieć minimum 5 znaków, spróbuj jeszcze raz.")
     sys.exit(0)
 else:
-    charakter_left = password_length
+    characters_left = password_length
 
+lowercase_letters = int(input("Ile małych liter ma mieć hasło? "))
+update_characters_left(lowercase_letters)
 
-lover_case = int(input("ile malych liter ma mieć hasło "))
-update_charakter_left(lover_case)
+uppercase_letters = int(input("Ile dużych liter ma mieć hasło? "))
+update_characters_left(uppercase_letters)
 
-upper_case = int(input("ile duzych liter ma mieć hasło "))
-update_charakter_left(upper_case)
+special_characters = int(input("Ile znaków specjalnych ma mieć hasło? "))
+update_characters_left(special_characters)
 
-specjal_charakter = int(input("ile znaków specjalnych ma mieć hasło? "))
-digits = int(input("ile cyfr ma mieć hasło "))
-update_charakter_left(digits)
+digits = int(input("Ile cyfr ma mieć hasło? "))
+update_characters_left(digits)
 
-if charakter_left > 0 :
-   
-   print("haslo zostanie uzupełnione małymi literami")
-
-   lover_case +=charakter_left
+if characters_left > 0:
+    print("Nie wszystkie znaki zostały wykorzystane. Hasło zostanie uzupełnione małymi literami.")
+    lowercase_letters += characters_left
 
 print()
+print("Długość hasła:", password_length)
+print("Małe litery:", lowercase_letters)
+print("Duże litery:", uppercase_letters)
+print("Znaki specjalne:", special_characters)
+print("Cyfry:", digits)
 
-print("Długość hasła",password_length)
-print("małe litery",lover_case)
-print("duze litery",upper_case)
-print("znaki specjalne",specjal_charakter)
-
-print("cyfry",digits)
-
-for i in range(password_length):
-   
-   if lover_case>0:
-      password.append(random.choice(string.ascii_lowercase))
-      lover_case =-1
-
-   if upper_case>0:
-      password.append(random.choice(string.ascii_uppercase))
-      upper_case =-1  
-
-   if specjal_charakter>0:
-      password.append(random.choice(string.punctuation))
-      specjal_charakter =-1   
-   
-   if digits>0:
-      password.append(random.choice(string.digits))
-      digits-=1
-      
+for _ in range(password_length):
+    if lowercase_letters > 0:
+        password.append(random.choice(string.ascii_lowercase))
+        lowercase_letters -= 1
+    if uppercase_letters > 0:
+        password.append(random.choice(string.ascii_uppercase))
+        uppercase_letters -= 1
+    if special_characters > 0:
+        password.append(random.choice(string.punctuation))
+        special_characters -= 1
+    if digits > 0:
+        password.append(random.choice(string.digits))
+        digits -= 1
 
 random.shuffle(password)
-print("wygenerowane hasło" ,"".join(password))
-      
-
-      
-
-
-
-   
-
- 
-
-
-
-
+print("Wygenerowane hasło:", "".join(password))

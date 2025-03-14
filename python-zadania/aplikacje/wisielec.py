@@ -1,50 +1,51 @@
 import sys
 
-non_of_tries = 5
-word = "kamil"
-used_letters= []
-user_word= []
+no_of_tries = 5
+word = "kamila"
+used_letters = []
 
-def find_indexes(word,letter):
- 
- indexes = []
+user_word = []
 
- for index , letter_in_word in enumerate(word):
-    
-    if letter == letter_in_word:
-       indexes.append(index)
- return indexes
+def find_indexes(word, letter):
+    indexes = []
+
+    for index, letter_in_word in enumerate(word):
+        if letter == letter_in_word:
+            indexes.append(index)
+
+    return indexes
+
+def show_state_of_game():
+    print()
+    print(user_word)
+    print("Pozostało prób:", no_of_tries)
+    print("Użyte litery:", used_letters)
+    print()
+
+###
 
 for _ in word:
     user_word.append("_")
 
 while True:
-
-    letter = input("podaj literę: ")
+    letter = input("Podaj literę: ")
     used_letters.append(letter)
-    found_indexes = find_indexes(word,letter)
 
-    if len(found_indexes)==0:
-     
-     print("nie ma takiej litery")
-     non_of_tries-=1
-     print("pozostało prób",non_of_tries)
-    
-    if non_of_tries==0:
-      print("koniec gry")
-      sys.exit(0)
+    found_indexes = find_indexes(word, letter)
 
+    if len(found_indexes) == 0:
+        print("Nie ma takiej litery.")
+        no_of_tries -= 1
+
+        if no_of_tries == 0:
+            print("Koniec gry :(")
+            sys.exit(0)
     else:
-     
-     for index in found_indexes:
-       user_word[index] = letter
-       print(user_word)  
+        for index in found_indexes:
+            user_word[index] = letter
 
-     if "".join(user_word) == word:
-       print("Brawo to jest to słowo")
-       sys.exit(0)
-       
-    print("uzyte litery" , used_letters)
-
-
- 
+        if "".join(user_word) == word:
+            print("Brawo, to jest to słowo!")
+            sys.exit(0)
+    
+    show_state_of_game()
