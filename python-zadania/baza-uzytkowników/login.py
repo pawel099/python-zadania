@@ -34,7 +34,7 @@ def view():
 
  except:
    
-   return  
+   return False
    
 r = view()
  
