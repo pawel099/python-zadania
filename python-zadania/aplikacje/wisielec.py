@@ -1,7 +1,5 @@
 import sys
 
-
-
 non_of_tries = 5
 word = "kamil"
 used_letters= []
