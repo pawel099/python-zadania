@@ -2,7 +2,7 @@
 import sqlite3
 import sys
 
-baza = sqlite3.connect("python-zadania\\baza-uzytkowników\\sqlite\\baza.sqlite")
+baza = sqlite3.connect("")
 
 def login():
 
@@ -14,7 +14,7 @@ def login():
 
  
  for table in tabela:
-  if login == table[1] and password==table[4]:
+  if login == table[0] and password==table[1]:
      return table
  else:
      error = "wystapił bład"
@@ -26,11 +26,11 @@ def view():
  
  try:
  
-  wynik = "SELECT name from products WHERE id = " + str(user[0])
-  product = baza.execute(wynik)
-  products = product.fetchall()
+  wynik = "SELECT name from user WHERE id = " + str(user[0])
+  user = baza.execute(wynik)
+  users = user.fetchall()
 
-  return products
+  return users
 
  except:
    
