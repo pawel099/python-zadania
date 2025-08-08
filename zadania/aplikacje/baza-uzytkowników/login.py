@@ -1,6 +1,6 @@
 
 import sqlite3
- 
+import sys
 
 baza = sqlite3.connect("")
 
