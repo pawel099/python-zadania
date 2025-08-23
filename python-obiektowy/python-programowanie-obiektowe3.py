@@ -1,3 +1,4 @@
+# metody
 class person:
     def __init__(self,name):
          self.name = name
@@ -11,7 +12,7 @@ class person:
     def farewall(self):
          print('zegnaj' + ' ' + self.name)
 
-persons = person('alinka')
+persons = person('alik')
 print(persons)
 obj_str = str(persons)
 
