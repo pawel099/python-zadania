@@ -1,3 +1,4 @@
+# prosta autoryzacja python obiektowość
 class uzytkownik:
 
     def __init__(self,login,password):
