@@ -19,7 +19,7 @@ class engine:
  def update(self,old_name,_new_user) :
         input("nowa nazwa " + _new_user) 
 
-         
+        #print(f"UPDATE student SET name ='{_new_user}' WHERE name ='{old_name}") 
         
         self.cursor.execute(f"UPDATE student SET name ='{_new_user}' WHERE name ='{old_name}'")
         self.connection.commit() # Zatwierdź zmiany
@@ -42,7 +42,7 @@ class engine:
                 print(str(dane[0]) + " " +  dane[1])
            
                
-polacz = engine('zadania\\aplikacje\\baza-uzytkowników\\baza-python.sqlite')
+polacz = engine('')
   
 print("wybierz 0 by  zakonczyć ..")
 print("wybierz 1 by wyswietlić wszystkich uzytkowników ..")
@@ -70,11 +70,13 @@ while True:
       
       old_name = input('wpisz nazwę uzytkownika ')
       name = input ('wpisz nowa nazwę uzytkownika  .. ')
-      polacz.update(old_name, name)
+      space = name.replace(" ","_")
+      polacz.update(old_name,space)
 
   case 4:
         name_user = (input('podaj nazwę uzytkownika..'))
-        polacz.createUser(name_user)
+        space = name_user.replace(" ","_")
+        polacz.createUser(space)
 
 
     
